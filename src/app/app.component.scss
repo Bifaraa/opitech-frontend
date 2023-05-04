@@ -10,12 +10,19 @@ main{
   background-color: #f7ede796;
 }
 
-section{
+.container__columns__vibles{
   @include functions.flex-position(center,center);
+  flex-direction: column;
+  gap: 1em;
 }
 
-.container__checkbox{
-  margin-right: 15px;
+.label__checkbox{
+  @include functions.flex-position(center,center);
+  flex-direction: row-reverse;
+}
+
+.checkbox{
+  width: auto;
 }
 
 section > button{
@@ -41,6 +48,9 @@ app-table-component{
 @media (min-width: 767px) {
   main{
     font-size: 1em;
+  }
+  .container__columns__vibles{
+    flex-direction: row;
   }
 }
 

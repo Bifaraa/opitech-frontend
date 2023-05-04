@@ -1,8 +1,9 @@
 <main>
-  <section>
+  <section class="container__columns__vibles">
     <div class="container__checkbox" *ngFor="let column of columns">
       <label class="label__checkbox">
         <input
+          class="checkbox"
           type="checkbox"
           [value]="column"
           [(ngModel)]="isCheckedColumns[column]"
@@ -16,6 +17,6 @@
   <app-table-component
     [person]="person"
     [columnsToDisplay]="selectedColumns"
-    [filtrosDefault]="['name', 'email', 'username']"
+    [filtrosDefault]="['name', 'email']"
   ></app-table-component>
 </main>

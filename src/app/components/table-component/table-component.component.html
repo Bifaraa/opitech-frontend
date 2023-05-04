@@ -1,18 +1,21 @@
 <ng-container *ngIf="person">
-  <div *ngFor="let key of getFilterKeys()">
-    <label>{{ key }}</label>
-    <select [(ngModel)]="filterPerson" (change)="onSelectFilter(key)">
-      <option value="">Mostrar todo</option>
-      <option *ngFor="let value of getFilterValues(key)" [value]="value">
-        {{ value }}
-      </option>
-    </select>
-  </div>
-  <div>
+  <section class="container__selects">
+    <div class="container__selects__select" *ngFor="let key of getFilterKeys()">
+      <label>{{ key }}</label>
+      <select [(ngModel)]="filterPerson" (change)="onSelectFilter(key)">
+        <option value="">Mostrar todo</option>
+        <option *ngFor="let value of getFilterValues(key)" [value]="value">
+          {{ value }}
+        </option>
+      </select>
+    </div>
+  </section>
+  <div class="container__news__filters">
     <svg
+      (click)="addFilter()"
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
+      width="40"
+      height="40"
       fill="currentColor"
       class="bi bi-plus-square-fill"
       viewBox="0 0 16 16"
@@ -20,7 +23,20 @@
       <path
         d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"
       />
-</svg>
+    </svg>
+    <input
+      type="text"
+      list="opciones"
+      [(ngModel)]="newFilter"
+      placeholder="New filter"
+    />
+    <datalist id="opciones">
+      <option value="id"></option>
+      <option value="name"></option>
+      <option value="username"></option>
+      <option value="email"></option>
+      <option value="phone"></option>
+    </datalist>
   </div>
   <table>
     <thead>

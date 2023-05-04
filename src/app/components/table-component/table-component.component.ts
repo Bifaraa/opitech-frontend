@@ -14,6 +14,7 @@ export class TableComponentComponent implements OnChanges {
   filterPersons: { [key: string]: any }[] = []
   filterPerson: string = ''
   selectFilter: string = 'name'
+  newFilter: string = ''
   ngOnChanges(changes: SimpleChanges) {
     if (changes['person']) {
       if (this.filtrosDefault.length > 0) {
@@ -53,5 +54,16 @@ export class TableComponentComponent implements OnChanges {
   }
   getselectFilter() {
     return this.selectFilter
+  }
+  addFilter() {
+    if (
+      this.newFilter &&
+      !this.filterPersons.some(
+        (item) => Object.keys(item)[0] === this.newFilter
+      )
+    ) {
+      this.creadorFiltro(this.newFilter)
+      this.newFilter = ''
+    }
   }
 }

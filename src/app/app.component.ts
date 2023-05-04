@@ -41,17 +41,17 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    /*    this.http
+    this.http
       .get<Person[]>('https://jsonplaceholder.typicode.com/users')
       .subscribe((data) => {
         this.person = data
         console.log(this.person)
-      }) */
-    this.http
+      })
+    /*  this.http
       .get<Person[]>('../assets/moucks-person.json')
       .subscribe((data) => {
         this.person = data
         console.log(this.person)
-      })
+      }) */
   }
 }

@@ -1,8 +1,21 @@
+@use '../../helpersCss/functions';
+.container__selects{
+  @include functions.flex-position(center,center);
+  flex-direction: column;
+  gap: 2em;
+}
+
+.container__selects__select{
+  @include functions.flex-position(center,center);
+  flex-direction: column;
+  gap: 1em;
+}
+
 select {
   border: 1px solid #e2e3e7;
   border-radius: 5px;
   height: 60px;
-  width: 50%;
+  width: 100%;
   text-align: center;
   background-image: linear-gradient(#95c0e0, #c9d3da);
   color: #0c0b0b;
@@ -17,6 +30,26 @@ select:hover {
 
 select option{
   background-color: #f7ede796;
+}
+
+.container__news__filters{
+  @include functions.flex-position(center, center);
+}
+
+.container__news__filters > svg{
+  fill: #95a2d6;
+  cursor: pointer;
+}
+.container__news__filters > input{
+  border: 1px solid #e2e3e7;
+  width: 100px;
+}
+.container__news__filters > svg, input{
+  height: 40px;
+}
+
+.container__news__filters > input{
+  border-radius: 5px;
 }
 
 table {
@@ -57,9 +90,20 @@ tbody > tr:nth-child(odd):hover {
     border-spacing: 40px;
   }
   select {
-    width: auto;
+    width: 50%;
     padding: 1em;
     font-size: 1em;
+  }
+  .container__selects{
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 2em;
+    flex-wrap: wrap;
+    margin-top: 4em;
+  }
+
+  .container__selects__select{
+    flex-direction: row;
   }
 }
 
