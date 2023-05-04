@@ -1,0 +1,22 @@
+@use './helpersCss/functions';
+
+main{
+  width: 100vw;
+  padding: 2em 0em;
+  font-size: 1.2em;
+  background-color: #f7ede796;
+}
+
+app-table-component{
+  @include functions.flex-position(center, center);
+  flex-direction: column;
+  width: 100%;
+  gap:2em;
+}
+
+@media (min-width: 767px) {
+  main{
+    font-size: 1em;
+  }
+}
+

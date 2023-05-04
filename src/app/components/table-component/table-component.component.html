@@ -1,0 +1,27 @@
+<ng-container *ngIf="person">
+  <select [(ngModel)]="filterPerson">
+    <option value="">Mostrar todas las personas</option>
+    <option *ngFor="let personName of filterPersons" [value]="personName">
+      {{ personName }}
+    </option>
+  </select>
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let column of columns">{{ column }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let persona of person | filter : filterPerson">
+        <td>{{ persona.id }}</td>
+        <td>{{ persona.name }}</td>
+        <td>{{ persona.username }}</td>
+        <td>{{ persona.email }}</td>
+        <td>{{ persona.phone }}</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+<ng-container>
+  <span *ngIf="!person">No se ha podido conectar con la API</span>
+</ng-container>
