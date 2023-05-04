@@ -4,4 +4,5 @@ export interface Person {
   username: string
   email: string
   phone: string
+  [key: string]: any
 }

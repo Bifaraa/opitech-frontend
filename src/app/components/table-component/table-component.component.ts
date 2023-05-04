@@ -9,19 +9,49 @@ import { Person } from 'src/app/models/person.model'
 export class TableComponentComponent implements OnChanges {
   @Input() person!: Person[]
   @Input() columnsToDisplay: string[] = []
+  @Input() filtrosDefault: string[] = []
   columns: string[] = []
-  filterPersons: string[] = []
+  filterPersons: { [key: string]: any }[] = []
   filterPerson: string = ''
+  selectFilter: string = 'name'
   ngOnChanges(changes: SimpleChanges) {
     if (changes['person']) {
-      this.filterPersons = changes['person'].currentValue.map(
-        (p: Person) => p.name
-      )
+      if (this.filtrosDefault.length > 0) {
+        this.filtrosDefault.map((filtro: string) => {
+          this.creadorFiltro(filtro)
+        })
+      }
     }
     if (changes['columnsToDisplay']) {
       if (changes['columnsToDisplay'].currentValue.length > 0) {
         this.columns = changes['columnsToDisplay'].currentValue
       }
     }
+  }
+  onSelectFilter(key: string) {
+    this.selectFilter = key
+  }
+  creadorFiltro(llave: string = '') {
+    const valor = this.person.map((p: Person) => p[llave])
+    this.filterPersons.push({
+      [llave]: valor
+    })
+  }
+  getFilterKeys() {
+    return this.filterPersons
+      .filter((item) => Object.keys(item).some((key) => item[key].length > 0))
+      .map((item) => Object.keys(item)[0])
+  }
+  getFilterValues(key: string) {
+    const values: string[] = []
+    this.filterPersons.map((item) => {
+      if (item[key] && item[key].length > 0) {
+        values.push(item[key])
+      }
+    })
+    return values.flat()
+  }
+  getselectFilter() {
+    return this.selectFilter
   }
 }
