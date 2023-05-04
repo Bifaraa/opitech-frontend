@@ -13,11 +13,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let persona of person | filter : filterPerson">
-        <td>{{ persona.id }}</td>
-        <td>{{ persona.name }}</td>
-        <td>{{ persona.username }}</td>
-        <td>{{ persona.email }}</td>
-        <td>{{ persona.phone }}</td>
+        <td *ngFor="let column of columns">{{ persona[column] }}</td>
       </tr>
     </tbody>
   </table>

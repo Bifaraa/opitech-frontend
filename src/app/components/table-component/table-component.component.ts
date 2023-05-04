@@ -8,7 +8,8 @@ import { Person } from 'src/app/models/person.model'
 })
 export class TableComponentComponent implements OnChanges {
   @Input() person!: Person[]
-  columns: string[] = ['id', 'name', 'username', 'email', 'phone']
+  @Input() columnsToDisplay: string[] = []
+  columns: string[] = []
   filterPersons: string[] = []
   filterPerson: string = ''
   ngOnChanges(changes: SimpleChanges) {
@@ -16,6 +17,11 @@ export class TableComponentComponent implements OnChanges {
       this.filterPersons = changes['person'].currentValue.map(
         (p: Person) => p.name
       )
+    }
+    if (changes['columnsToDisplay']) {
+      if (changes['columnsToDisplay'].currentValue.length > 0) {
+        this.columns = changes['columnsToDisplay'].currentValue
+      }
     }
   }
 }

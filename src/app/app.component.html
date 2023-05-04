@@ -1,3 +1,20 @@
 <main>
-  <app-table-component [person]="person"></app-table-component>
+  <section>
+    <div class="container__checkbox" *ngFor="let column of columns">
+      <label class="label__checkbox">
+        <input
+          type="checkbox"
+          [value]="column"
+          [(ngModel)]="isCheckedColumns[column]"
+        />
+        {{ column }}
+      </label>
+    </div>
+    <button (click)="onApplyColumns()">Aplicar columnas</button>
+    <button (click)="onResetColumns()">Resetear columnas</button>
+  </section>
+  <app-table-component
+    [person]="person"
+    [columnsToDisplay]="selectedColumns"
+  ></app-table-component>
 </main>
