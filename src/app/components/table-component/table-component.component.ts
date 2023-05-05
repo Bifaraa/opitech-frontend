@@ -10,9 +10,12 @@ export class TableComponentComponent implements OnChanges {
   @Input() person!: Person[]
   @Input() columnsToDisplay: string[] = []
   @Input() filtrosDefault: string[] = []
+  // columnas a renderizar
   columns: string[] = []
+  // filtros que se mostraran por medio del select en el html
   filterPersons: { [key: string]: any }[] = []
   filterPerson: string = ''
+  // varibale que guarda el filtro en el cual se ha hecho clic
   selectFilter: string = 'name'
   newFilter: string = ''
   ngOnChanges(changes: SimpleChanges) {
@@ -29,6 +32,7 @@ export class TableComponentComponent implements OnChanges {
       }
     }
   }
+  // le asigna a selectFilter el valor selecionado
   onSelectFilter(key: string) {
     this.selectFilter = key
   }
@@ -38,11 +42,13 @@ export class TableComponentComponent implements OnChanges {
       [llave]: valor
     })
   }
+  // devuelve las keys del objeto filterPerson que contiene los filtros disponibles
   getFilterKeys() {
     return this.filterPersons
       .filter((item) => Object.keys(item).some((key) => item[key].length > 0))
       .map((item) => Object.keys(item)[0])
   }
+  // devuelve el valor del objeto filterPerson que contiene los filtros disponibles
   getFilterValues(key: string) {
     const values: string[] = []
     this.filterPersons.map((item) => {
@@ -55,12 +61,14 @@ export class TableComponentComponent implements OnChanges {
   getselectFilter() {
     return this.selectFilter
   }
+  // Verifica que no existe ya el newfiltrer y que sea posible crear (que sea alguna de las columnas y no algo al azar)
   addFilter() {
     if (
       this.newFilter &&
       !this.filterPersons.some(
         (item) => Object.keys(item)[0] === this.newFilter
-      )
+      ) &&
+      this.columns.some((item) => item === this.newFilter)
     ) {
       this.creadorFiltro(this.newFilter)
       this.newFilter = ''

@@ -13,7 +13,11 @@ export class AppComponent implements OnInit {
   title = 'prueba-front-opi-tech'
   http = inject(HttpClient)
   person: Person[] = []
+
+  // columnnas por defecto que se pasaran al componente table
   columns: string[] = ['id', 'name', 'username', 'email', 'phone']
+
+  // objeto para manejar la visibilidad de las columnas
   isCheckedColumns: Columns = {
     id: true,
     name: true,
